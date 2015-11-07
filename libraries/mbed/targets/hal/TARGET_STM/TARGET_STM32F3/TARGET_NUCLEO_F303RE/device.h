@@ -41,6 +41,10 @@
 
 #define DEVICE_SERIAL           1
 
+#ifndef NO_RETARGET_SERIAL
+#define DEVICE_SERIAL_RETARGET  1
+#endif
+
 #define DEVICE_I2C              1
 #define DEVICE_I2CSLAVE         1
 
@@ -63,7 +67,9 @@
 
 #define DEVICE_DEBUG_AWARENESS  0
 
+#ifndef NO_RETARGET_SERIAL
 #define DEVICE_STDIO_MESSAGES   1
+#endif
 
 #define DEVICE_ERROR_RED        0
 

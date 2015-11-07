@@ -80,13 +80,13 @@ FileHandle::~FileHandle() {
     }
 }
 
-#if DEVICE_SERIAL
+#if DEVICE_SERIAL_RETARGET
 extern int stdio_uart_inited;
 extern serial_t stdio_uart;
 #endif
 
 static void init_serial() {
-#if DEVICE_SERIAL
+#if DEVICE_SERIAL_RETARGET
     if (stdio_uart_inited) return;
     serial_init(&stdio_uart, STDIO_UART_TX, STDIO_UART_RX);
 #endif
@@ -203,7 +203,7 @@ extern "C" int PREFIX(_write)(FILEHANDLE fh, const unsigned char *buffer, unsign
 #endif
     int n; // n is the number of bytes written
     if (fh < 3) {
-#if DEVICE_SERIAL
+#if DEVICE_SERIAL_RETARGET
         if (!stdio_uart_inited) init_serial();
         for (unsigned int i = 0; i < length; i++) {
             serial_putc(&stdio_uart, buffer[i]);
@@ -231,7 +231,7 @@ extern "C" int PREFIX(_read)(FILEHANDLE fh, unsigned char *buffer, unsigned int 
     int n; // n is the number of bytes read
     if (fh < 3) {
         // only read a character at a time from stdin
-#if DEVICE_SERIAL
+#if DEVICE_SERIAL_RETARGET
         if (!stdio_uart_inited) init_serial();
         *buffer = serial_getc(&stdio_uart);
 #endif
