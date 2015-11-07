@@ -62,6 +62,13 @@ public:
     }
 };
 
+/**
+ * Ensures any macros defined with the name CAN don't conflict
+ * This is an issue for STM32 HAL
+ */
+#ifdef  CAN
+  #undef CAN
+#endif
 /** A can bus client, used for communicating with can devices
  */
 class CAN {

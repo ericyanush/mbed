@@ -105,6 +105,14 @@ struct pwmout_s {
     uint32_t inverted;
 };
 
+struct can_s {
+    CAN_HandleTypeDef handle;
+    CanTxMsgTypeDef txMsg;
+    CanRxMsgTypeDef rxMsg;
+    PinName rxPin;
+    PinName txPin;
+};
+
 #include "gpio_object.h"
 
 #ifdef __cplusplus
