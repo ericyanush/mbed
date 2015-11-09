@@ -707,6 +707,13 @@ typedef struct
  ((__TRANSMITMAILBOX__) == CAN_TXMAILBOX_1)? ((((__HANDLE__)->Instance->TSR) & (CAN_TSR_RQCP1 | CAN_TSR_TXOK1 | CAN_TSR_TME1)) == (CAN_TSR_RQCP1 | CAN_TSR_TXOK1 | CAN_TSR_TME1)) :\
  ((((__HANDLE__)->Instance->TSR) & (CAN_TSR_RQCP2 | CAN_TSR_TXOK2 | CAN_TSR_TME2)) == (CAN_TSR_RQCP2 | CAN_TSR_TXOK2 | CAN_TSR_TME2)))
 
+/**
+ * @brief Check if there is a free transmit mailbox
+ * @param __HANDLE__: specifies the CAN Handle
+ * @retval: True if there is a free mailbox, FALSE if there isn't
+ */
+#define __HAL_CAN_MAILBOX_AVAILABLE(__HANDLE__) ((__HANDLE__)->Instance->TSR&(CAN_TSR_TME0|CAN_TSR_TME1|CAN_TSR_TME2))
+
 
 
 /**

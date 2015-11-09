@@ -109,6 +109,7 @@ struct can_s {
     CAN_HandleTypeDef handle;
     CanTxMsgTypeDef txMsg;
     CanRxMsgTypeDef rxMsg;
+    uint8_t rxMsgPending;
     PinName rxPin;
     PinName txPin;
 };
